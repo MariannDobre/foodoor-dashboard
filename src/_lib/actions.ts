@@ -1,8 +1,11 @@
 'use server';
 
 import { revalidatePath } from 'next/cache';
-import { auth, signIn, signOut } from '@/_lib/auth';
+import { redirect } from 'next/navigation';
+
 import { supabaseClient } from './supabaseClient';
+
+import { auth, signIn, signOut } from '@/_lib/auth';
 import {
   createCartIdentifier,
   getCartIdentifier,
@@ -390,6 +393,82 @@ export async function removeItem(productId: number) {
   revalidatePath('/');
 }
 
+// export async function placeOrder() {
+//   const session = await auth();
+//   const userId = session?.user?.user_id ?? null;
+
+//   const identifier = await ensureCartIdentifier(userId);
+
+//   console.log(`placeOrder execution process started: `, identifier);
+
+//   const isUUID = typeof identifier === 'string' && identifier.includes('-');
+//   const idColumn = isUUID ? 'cart_id' : 'user_id';
+
+//   const { data: cartItems, error: cartError } = await supabaseClient
+//     .from('cart')
+//     .select('*, products(*)')
+//     .eq(idColumn, identifier);
+
+//   if (cartError || !cartItems || cartItems.length === 0) {
+//     throw new Error('Cart is empty or failed to load.');
+//   }
+
+//   if (!isUUID) {
+//     const { data: log, error: logError } = await supabaseClient
+//       .from('logs')
+//       .insert({ user_id: identifier })
+//       .select()
+//       .single();
+
+//     if (logError || !log) {
+//       console.error('Failed to insert log:', logError);
+//       throw new Error('Failed to create order log.');
+//     }
+
+//     const logId = log.id;
+
+//     const logItems = cartItems.map((item) => ({
+//       log_id: logId,
+//       product_id: item.products.id,
+//       product_name: item.products.name,
+//       product_price: item.products.price,
+//       product_image: item.products.image,
+//       total_quantity: item.total_quantity,
+//       total_price: item.total_price,
+//     }));
+
+//     const { error: insertItemsError } = await supabaseClient
+//       .from('log_items')
+//       .insert(logItems);
+
+//     if (insertItemsError) {
+//       console.error(
+//         `Failed to insert order items: `,
+//         insertItemsError?.message
+//       );
+//       throw new Error('Failed to insert order items.');
+//     }
+//   }
+
+//   const { error: deleteError } = await supabaseClient
+//     .from('cart')
+//     .delete()
+//     .eq(idColumn, identifier);
+
+//   if (deleteError) {
+//     console.error('Failed to clear cart:', deleteError.message);
+//     throw new Error('Failed to clear cart.');
+//   }
+
+//   console.log(
+//     `✅ Order placed and cart cleared for ${
+//       isUUID ? 'guest' : 'user'
+//     }: ${identifier}`
+//   );
+
+//   revalidatePath('/');
+// }
+
 export async function placeOrder() {
   const session = await auth();
   const userId = session?.user?.user_id ?? null;
@@ -407,7 +486,7 @@ export async function placeOrder() {
     .eq(idColumn, identifier);
 
   if (cartError || !cartItems || cartItems.length === 0) {
-    throw new Error('Cart is empty or failed to load.');
+    redirect('/cart?status=error&message=Cart is empty or failed to load');
   }
 
   if (!isUUID) {
@@ -419,7 +498,7 @@ export async function placeOrder() {
 
     if (logError || !log) {
       console.error('Failed to insert log:', logError);
-      throw new Error('Failed to create order log.');
+      redirect('/cart?status=error&message=Failed to create order log');
     }
 
     const logId = log.id;
@@ -443,7 +522,7 @@ export async function placeOrder() {
         `Failed to insert order items: `,
         insertItemsError?.message
       );
-      throw new Error('Failed to insert order items.');
+      redirect('/cart?status=error&message=Failed to insert order items');
     }
   }
 
@@ -454,7 +533,7 @@ export async function placeOrder() {
 
   if (deleteError) {
     console.error('Failed to clear cart:', deleteError.message);
-    throw new Error('Failed to clear cart.');
+    redirect('/cart?status=error&message=Failed to clear cart');
   }
 
   console.log(
@@ -463,7 +542,8 @@ export async function placeOrder() {
     }: ${identifier}`
   );
 
-  revalidatePath('/');
+  // Success redirect
+  redirect('/cart?status=success&message=Order placed successfully!');
 }
 
 export async function getLogIdentifier(userId: number | null) {

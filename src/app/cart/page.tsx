@@ -2,9 +2,14 @@ import { Suspense } from 'react';
 
 import CartBody from '@/_components/_cart/CartBody';
 import CartFooter from '@/_components/_cart/CartFooter';
+import CartNotification from '@/_components/_cart/CartNotification';
 import MiniSpinner from '@/_components/_ui/MiniSpinner';
 
-export default function Page() {
+interface PageProps {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}
+
+export default function Page({ searchParams }: PageProps) {
   return (
     <section className='w-full h-full flex flex-col gap-9'>
       <div className='w-full h-auto flex flex-col gap-1.5'>
@@ -16,6 +21,8 @@ export default function Page() {
           Review your items and place your order
         </p>
       </div>
+
+      <CartNotification searchParams={searchParams} />
 
       <Suspense
         fallback={

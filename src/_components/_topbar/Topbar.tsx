@@ -14,7 +14,7 @@ export default async function Topbar() {
 
       <Search />
 
-      <div className='flex items-center gap-3'>
+      <div className='flex items-center gap-1.5 2xl:gap-3'>
         {session?.user ? <Logout /> : null}
 
         <Cart userId={session?.user?.user_id ?? null} />

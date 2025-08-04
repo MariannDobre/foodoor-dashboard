@@ -224,15 +224,15 @@ export default function Search() {
         onChange={(e) => setQuery(e.target.value)}
         onFocus={handleFocus}
         onBlur={handleBlur}
-        className='outline-none border-l-2 border-l-neutral-500 dark:border-white bg-gray-200/75 dark:bg-stone-500/75 text-neutral-800 dark:text-white tracking-wide placeholder:text-neutral-500/50 dark:placeholder:text-white/50 placeholder:tracking-wide caret-orange-500 w-92 rounded-lg py-1.5 pl-9 pr-10 shadow hover:w-lg focus-visible:w-lg hover:shadow-lg focus-visible:shadow-lg hover:border-l-orange-500 focus-visible:border-l-orange-500 hover:placeholder:text-neutral-500 dark:hover:placeholder:text-white/75 focus-visible:placeholder:text-neutral-500 dark:focus-visible:placeholder:text-white/75 selection:bg-orange-500 selection:text-white placeholder:transition-colors placeholder:duration-500 transition-all duration-500'
-        placeholder='What are you looking for?'
+        className='outline-none border-l-2 border-l-neutral-500 dark:border-white bg-gray-200/75 dark:bg-stone-500/75 text-neutral-800 dark:text-white tracking-wide placeholder:text-neutral-500/50 dark:placeholder:text-white/50 placeholder:tracking-wide caret-orange-500 w-36 xl:w-84 2xl:w-92 rounded-lg py-1.5 pl-9 pr-1.5 2xl:pr-10 shadow hover:w-52 focus-visible:w-52 2xl:hover:w-lg 2xl:focus-visible:w-lg hover:shadow-lg focus-visible:shadow-lg hover:border-l-orange-500 focus-visible:border-l-orange-500 hover:placeholder:text-neutral-500 dark:hover:placeholder:text-white/75 focus-visible:placeholder:text-neutral-500 dark:focus-visible:placeholder:text-white/75 selection:bg-orange-500 selection:text-white placeholder:transition-colors placeholder:duration-500 transition-all duration-500'
+        placeholder='Search foodoor...'
         title='Search restaurants or products...'
       />
 
       {/* Results dropdown */}
       {showResults && (
         <div className='absolute top-full left-0 mt-3 w-full bg-gray-200/75 dark:bg-stone-500/75 border border-neutral-400 dark:border-neutral-700 backdrop-blur-md rounded-lg shadow-sm z-[75] max-h-80 overflow-y-auto'>
-          <div className='p-3'>{renderSearchResults()}</div>
+          <div className='p-1.5 2xl:p-3'>{renderSearchResults()}</div>
         </div>
       )}
     </div>

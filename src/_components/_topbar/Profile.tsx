@@ -11,7 +11,7 @@ export default async function Profile() {
   return (
     <Link
       href={session?.user ? '/account' : '/login'}
-      className='group w-12 h-12 outline-none border-none cursor-pointer flex items-center justify-center rounded-2xl'
+      className='group w-7 h-7 2xl:w-12 2xl:h-12 outline-none border-none cursor-pointer flex items-center justify-center rounded-2xl'
     >
       <div
         className={`w-full h-full flex items-center justify-center rounded-2xl shadow-sm transition-all duration-500 overflow-hidden
