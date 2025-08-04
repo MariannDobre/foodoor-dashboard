@@ -8,7 +8,7 @@ import MiniSpinner from '@/_components/_ui/MiniSpinner';
 
 interface PageProps {
   params: Promise<{ restaurantId: string }>;
-  searchParams?: { [key: string]: string | string[] | undefined };
+  searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
 export async function generateMetadata({ params }: PageProps) {
