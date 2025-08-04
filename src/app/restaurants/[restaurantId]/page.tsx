@@ -7,11 +7,15 @@ import ProductCard from '@/_components/_products/ProductCard';
 import MiniSpinner from '@/_components/_ui/MiniSpinner';
 
 interface PageProps {
-  params: Promise<{ restaurantId: string }>;
+  params: { restaurantId: string };
   searchParams?: { [key: string]: string | string[] | undefined };
 }
 
-export async function generateMetadata({ params }: PageProps) {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ restaurantId: string }>;
+}) {
   const { restaurantId } = await params;
   const baseURL = process.env.NEXT_PUBLIC_BASE_URL ?? 'http://localhost:3000';
 
