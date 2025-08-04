@@ -1,8 +1,21 @@
 import NextAuth from 'next-auth';
 import Google from 'next-auth/providers/google';
+import type { NextAuthConfig } from 'next-auth';
+
 import { supabaseClient } from './supabaseClient';
 
-async function getUser(email: string) {
+interface SupabaseUser {
+  id: number;
+  username: string;
+  email: string;
+  avatar_url?: string;
+  phone_number?: string;
+  address?: string;
+  city?: string;
+  created_at?: string;
+}
+
+async function getUser(email: string): Promise<SupabaseUser | null> {
   const { data, error } = await supabaseClient
     .from('users')
     .select('*')
@@ -17,13 +30,17 @@ async function getUser(email: string) {
   if (data.length > 1) {
     console.warn(`Multiple users found for email: ${email}`);
     // Return the first user or handle as needed
-    return data[0];
+    return data[0] as SupabaseUser;
   }
 
-  return data.length === 1 ? data[0] : null;
+  return data.length === 1 ? (data[0] as SupabaseUser) : null;
 }
 
-async function createUser(newUser) {
+async function createUser(newUser: {
+  username: string;
+  email: string;
+  avatar_url?: string;
+}): Promise<SupabaseUser> {
   const { data, error } = await supabaseClient
     .from('users')
     .insert([newUser])
@@ -35,10 +52,10 @@ async function createUser(newUser) {
     throw new Error('The user could not be created...');
   }
 
-  return data;
+  return data as SupabaseUser;
 }
 
-const authConfig = {
+const authConfig: NextAuthConfig = {
   providers: [
     Google({
       clientId: process.env.AUTH_GOOGLE_ID,
@@ -46,22 +63,51 @@ const authConfig = {
     }),
   ],
   callbacks: {
-    authorized({ auth, request }) {
+    // authorized({ auth, request }) {
+    //   return !!auth?.user;
+    // },
+    authorized({ auth }) {
       return !!auth?.user;
     },
-    async signIn({ user, account, profile }) {
+    // async signIn({ user, account, profile }) {
+    //   try {
+    //     const existingUser = await getUser(user?.email);
+
+    //     if (!existingUser) {
+    //       console.log('Creating new user:', user?.email);
+    //       await createUser({
+    //         username: user?.name,
+    //         email: user?.email,
+    //         avatar_url: user?.image,
+    //       });
+    //     } else {
+    //       console.log('User already exists:', user?.email);
+    //     }
+
+    //     return true;
+    //   } catch (error) {
+    //     console.error('SignIn error:', error);
+    //     return false;
+    //   }
+    // },
+    async signIn({ user }) {
       try {
-        const existingUser = await getUser(user?.email);
+        if (!user?.email) {
+          console.error('No email provided');
+          return false;
+        }
+
+        const existingUser = await getUser(user.email);
 
         if (!existingUser) {
-          console.log('Creating new user:', user?.email);
+          console.log('Creating new user:', user.email);
           await createUser({
-            username: user?.name,
-            email: user?.email,
-            avatar_url: user?.image,
+            username: user.name || '',
+            email: user.email,
+            avatar_url: user.image || '',
           });
         } else {
-          console.log('User already exists:', user?.email);
+          console.log('User already exists:', user.email);
         }
 
         return true;
@@ -70,11 +116,26 @@ const authConfig = {
         return false;
       }
     },
-    async session({ session, user }) {
+    // async session({ session, user }) {
+    //   try {
+    //     const supabaseUser = await getUser(session?.user?.email);
+    //     if (supabaseUser) {
+    //       session.user.user_id = supabaseUser.id;
+    //     }
+    //     return session;
+    //   } catch (error) {
+    //     console.error('Session callback error:', error);
+    //     return session;
+    //   }
+    // },
+    async session({ session }) {
       try {
-        const supabaseUser = await getUser(session?.user?.email);
-        if (supabaseUser) {
-          session.user.user_id = supabaseUser.id;
+        if (session?.user?.email) {
+          const supabaseUser = await getUser(session.user.email);
+          if (supabaseUser) {
+            // Extend the session user with custom properties
+            session.user.user_id = supabaseUser.id;
+          }
         }
         return session;
       } catch (error) {
