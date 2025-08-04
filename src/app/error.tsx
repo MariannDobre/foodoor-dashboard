@@ -13,7 +13,7 @@ export default function Error({
         Something unexpected happened!
       </h3>
 
-      <p className='text-lg text-red-400 dark:text-stone-400 font-normal tracking-wide mt-3'>
+      <p className='text-center text-lg text-red-400 dark:text-stone-400 font-normal tracking-wide mt-3'>
         {error?.message}
       </p>
 
