@@ -2,7 +2,9 @@ import { Restaurant } from '@/_types/database';
 import RestaurantCard from '@/_components/_restaurants/RestaurantCard';
 
 export default async function RestaurantsList() {
-  const baseURL = process.env.NEXT_PUBLIC_BASE_URL ?? 'http://localhost:3000';
+  const baseURL =
+    process.env.NEXT_PUBLIC_BASE_URL ??
+    'https://foodoor-dashboard-demo.vercel.app/';
   const res = await fetch(`${baseURL}/api/restaurants`, {
     method: 'GET',
   });

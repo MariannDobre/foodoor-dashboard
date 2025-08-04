@@ -11,9 +11,13 @@ interface PageProps {
   searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
+export const dynamic = 'force-dynamic';
+
 export async function generateMetadata({ params }: PageProps) {
   const { restaurantId } = await params;
-  const baseURL = process.env.NEXT_PUBLIC_BASE_URL ?? 'http://localhost:3000';
+  const baseURL =
+    process.env.NEXT_PUBLIC_BASE_URL ??
+    'https://foodoor-dashboard-demo.vercel.app/';
 
   const restaurantResponse = await fetch(
     `${baseURL}/api/restaurants/${restaurantId}`,
@@ -27,19 +31,19 @@ export async function generateMetadata({ params }: PageProps) {
   return { title: `${name} Restaurant` };
 }
 
-export async function generateStaticParams() {
-  const baseURL = process.env.NEXT_PUBLIC_BASE_URL ?? 'http://localhost:3000';
-  const restaurantsRequest = await fetch(`${baseURL}/api/restaurants`, {
-    method: 'GET',
-  });
-  const restaurantsData = await restaurantsRequest.json();
+// export async function generateStaticParams() {
+//   const baseURL = process.env.NEXT_PUBLIC_BASE_URL ?? 'https://foodoor-dashboard-demo.vercel.app/';
+//   const restaurantsRequest = await fetch(`${baseURL}/api/restaurants`, {
+//     method: 'GET',
+//   });
+//   const restaurantsData = await restaurantsRequest.json();
 
-  const ids = restaurantsData.map((restaurant: Restaurant) => ({
-    restaurantId: String(restaurant.id),
-  }));
+//   const ids = restaurantsData.map((restaurant: Restaurant) => ({
+//     restaurantId: String(restaurant.id),
+//   }));
 
-  return ids;
-}
+//   return ids;
+// }
 
 export default async function Page({ params, searchParams }: PageProps) {
   const { restaurantId } = await params;
@@ -48,7 +52,9 @@ export default async function Page({ params, searchParams }: PageProps) {
   const filterValue = Array.isArray(rawFilterValue)
     ? rawFilterValue[0]
     : rawFilterValue || 'all';
-  const baseURL = process.env.NEXT_PUBLIC_BASE_URL ?? 'http://localhost:3000';
+  const baseURL =
+    process.env.NEXT_PUBLIC_BASE_URL ??
+    'https://foodoor-dashboard-demo.vercel.app/';
 
   const restaurantRequest = await fetch(
     `${baseURL}/api/restaurants/${restaurantId}`,
