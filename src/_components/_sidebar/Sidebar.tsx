@@ -42,13 +42,13 @@ const publicLinksNotAuth: LinkItem[] = [
   { id: 2, label: 'Cart', value: '/cart', icon: <BsCart3 /> },
   {
     id: 3,
-    label: 'Log Into Account',
+    label: 'Log In',
     value: '/login',
     icon: <BsBoxArrowInRight />,
   },
   {
     id: 4,
-    label: 'Register An Account',
+    label: 'Register',
     value: '/register',
     icon: <BsPersonPlus />,
   },
@@ -63,7 +63,7 @@ const publicLinksAuth: LinkItem[] = [
 const privateLinks: LinkItem[] = [
   {
     id: 0,
-    label: 'Activity Logs',
+    label: 'Logs',
     value: '/logs',
     icon: <BsFileEarmarkText />,
   },
@@ -81,12 +81,12 @@ function Sidebar({ session }: ComponentProps) {
     <aside
       className={`${
         isNavCollapsed ? 'w-full xl:w-35.25' : 'w-full xl:w-sm'
-      } h-full flex flex-row xl:flex-col border-r border-neutral-400 dark:border-neutral-700 bg-gray-950 dark:bg-black transition-all duration-500 relative`}
+      } h-full flex flex-row items-center justify-start xl:flex-col xl:items-start xl:justify-start py-3 xl:py-0 border-r-0 xl:border-r xl:border-neutral-400 dark:border-neutral-700 bg-gray-950 dark:bg-black transition-all duration-500 relative`}
       aria-label='Main navigation'
     >
       <button
         type='button'
-        className='outline-none border border-neutral-400 dark:border-neutral-700 w-8 h-8 flex items-center justify-center absolute right-6 -bottom-4 xl:top-6 xl:-right-4 z-50 rounded-full shadow-sm text-white bg-orange-500 cursor-pointer hover:bg-orange-700 focus-visible:bg-orange-700 hover:border-gray-950 focus-visible:border-gray-950 transition-all duration-500'
+        className='hidden outline-none border border-neutral-400 dark:border-neutral-700 w-8 h-8 xl:flex xl:items-center xl:justify-center absolute xl:top-6 xl:-right-4 z-50 rounded-full shadow-sm text-white bg-orange-500 cursor-pointer hover:bg-orange-700 focus-visible:bg-orange-700 hover:border-gray-950 focus-visible:border-gray-950 transition-all duration-500'
         onClick={toggleNav}
         title={isNavCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
         aria-label={isNavCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
@@ -101,9 +101,9 @@ function Sidebar({ session }: ComponentProps) {
         </span>
       </button>
 
-      <div className='w-full h-auto py-3 px-3 xl:py-4.5 xl:px-9 2xl:py-6 2xl:px-12 flex flex-col items-start gap-4.5'>
+      <div className='w-auto xl:w-full py-0 px-3 xl:py-6 xl:px-12 flex flex-col items-start gap-4.5'>
         <h6
-          className={`text-sm text-gray-400 dark:text-stone-400 font-medium transition-opacity duration-250 ${
+          className={`hidden xl:block text-sm text-gray-400 dark:text-stone-400 font-medium transition-opacity duration-250 ${
             isNavCollapsed ? 'opacity-0 invisible' : 'opacity-100 visible'
           }`}
           aria-hidden={isNavCollapsed}
@@ -112,7 +112,7 @@ function Sidebar({ session }: ComponentProps) {
         </h6>
 
         <ul
-          className='w-full h-auto flex flex-row xl:flex-col items-start gap-4.5'
+          className='w-auto xl:w-full h-auto flex flex-row xl:flex-col xl:items-start xl:justify-start gap-4.5'
           role='list'
         >
           {session?.user
@@ -134,9 +134,9 @@ function Sidebar({ session }: ComponentProps) {
       </div>
 
       {!session?.user ? null : (
-        <div className='w-full h-auto py-0 px-12 flex flex-col items-start gap-4.5'>
+        <div className='w-auto xl:w-full h-auto py-0 px-3 xl:py-0 xl:px-12 flex flex-col items-start gap-4.5'>
           <h6
-            className={`text-sm text-gray-400 dark:text-stone-400 font-medium transition-opacity duration-250 ${
+            className={`hidden xl:block text-sm text-gray-400 dark:text-stone-400 font-medium transition-opacity duration-250 ${
               isNavCollapsed ? 'opacity-0 invisible' : 'opacity-100 visible'
             }`}
             aria-hidden={isNavCollapsed}
@@ -145,7 +145,7 @@ function Sidebar({ session }: ComponentProps) {
           </h6>
 
           <ul
-            className='w-full h-auto flex flex-col items-start gap-4.5'
+            className='w-auto xl:w-full h-auto flex flex-row xl:flex-col items-start gap-4.5'
             role='list'
           >
             {privateLinks.map((link) => (
@@ -159,7 +159,7 @@ function Sidebar({ session }: ComponentProps) {
         </div>
       )}
 
-      <div className='w-full h-auto py-6 px-12 mt-auto border-t border-neutral-400 dark:border-neutral-700'>
+      <div className='w-auto xl:w-full h-auto py-0 px-3 xl:py-6 xl:px-12 ml-auto xl:mt-auto border-t-0 xl:border-t xl:border-neutral-400 dark:border-neutral-700'>
         <ThemeToggle isNavCollapsed={isNavCollapsed} />
       </div>
     </aside>

@@ -7,18 +7,19 @@ export default async function UserData() {
   const session = await auth();
 
   return (
-    <div className='border border-neutral-300 dark:border-neutral-600 flex flex-col items-center gap-6 p-6 rounded-lg shadow-sm w-full h-full'>
+    <div className='border border-neutral-300 dark:border-neutral-600 flex flex-col items-center gap-3 lg:gap-6 p-3 lg:p-6 rounded-lg shadow-sm w-full h-full'>
       <div className='w-full h-auto flex flex-col gap-0.5'>
-        <h6 className='text-orange-500 text-xl font-medium tracking-wide'>
+        <h6 className='text-orange-500 text-base lg:text-lg xl:text-xl font-medium tracking-wide'>
           Account Informations
         </h6>
-        <p className='text-gray-500 dark:text-stone-400 text-sm font-normal tracking-wider'>
+
+        <p className='text-gray-500 dark:text-stone-400 text-xs lg:text-sm font-normal tracking-wider'>
           Preview your account details such as username, avatar, and so on...
         </p>
       </div>
 
-      <div className='w-full flex items-center gap-4.5'>
-        <div className='w-18 h-18 bg-gray-300 dark:bg-neutral-600 flex items-center justify-center rounded-full shadow-sm relative'>
+      <div className='w-full flex items-center gap-3 lg:gap-4.5'>
+        <div className='w-12 h-12 lg:w-15 lg:h-15 2xl:w-18 2xl:h-18 bg-gray-300 dark:bg-neutral-600 flex items-center justify-center rounded-full shadow-sm relative'>
           {session?.user?.image ? (
             <div className='w-full h-full rounded-full relative'>
               <Image
@@ -33,7 +34,7 @@ export default async function UserData() {
               />
             </div>
           ) : (
-            <span>
+            <span className='w-full h-full rounded-full bg-black text-white text-lg font-medium'>
               {session?.user ? (
                 session.user?.name?.trim().charAt(0).toUpperCase()
               ) : (
@@ -44,18 +45,18 @@ export default async function UserData() {
         </div>
 
         <div className='flex flex-col'>
-          <p className='text-lg text-black dark:text-white font-medium tracking-wide'>
+          <p className='text-base lg:text-lg text-black dark:text-white font-medium tracking-wide'>
             {session?.user?.name}
           </p>
 
-          <span className='text-sm text-gray-500 dark:text-white/50 font-normal tracking-wide'>
+          <span className='text-xs lg:text-sm text-gray-500 dark:text-white/50 font-normal tracking-wider lg:tracking-wide'>
             {session?.user?.email}
           </span>
         </div>
       </div>
 
-      <div className='w-full h-full p-6 flex flex-col items-center justify-center bg-gray-200/75 dark:bg-stone-500/75 border border-neutral-400 dark:border-neutral-700 rounded-lg shadow-sm'>
-        <p className='text-gray-500 dark:text-white/75 text-sm font-normal tracking-wider text-center'>
+      <div className='w-full h-full p-3 lg:p-6 flex flex-col items-center justify-center bg-gray-200/75 dark:bg-stone-500/75 border border-neutral-400 dark:border-neutral-700 rounded-lg shadow-sm'>
+        <p className='text-gray-500 dark:text-white/75 text-xs leading-4.5 lg:text-sm lg:leading-4 font-normal tracking-wider text-center'>
           Since your account was created using Google as the authentication
           provider, you can`t change your display name or email directly from
           here.

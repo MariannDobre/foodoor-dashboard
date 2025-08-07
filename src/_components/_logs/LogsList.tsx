@@ -58,8 +58,8 @@ export default async function LogsList() {
     .filter((log) => log.items.length > 0);
 
   return (
-    <div className='relative border border-neutral-300 dark:border-neutral-600 flex flex-col items-center gap-6 p-6 rounded-lg shadow-sm w-full h-[calc(100%-62px-24px)] overflow-y-scroll'>
-      <ul className='w-full h-auto flex flex-col gap-9'>
+    <div className='relative border border-neutral-300 dark:border-neutral-600 flex flex-col items-center gap-3 lg:gap-6 p-3 lg:p-6 rounded-lg shadow-sm w-full h-[calc(100%-62px-24px)] overflow-y-scroll'>
+      <ul className='w-full h-auto flex flex-col gap-3 lg:gap-6 xl:gap-9'>
         {groupedLogsItems.map((groupedLogItem, index) => (
           <LogsCard
             key={index}

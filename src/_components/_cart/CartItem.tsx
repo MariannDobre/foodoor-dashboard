@@ -58,7 +58,7 @@ export default async function CartItem({ item }: ComponentProps) {
   return (
     <div
       key={item.id}
-      className='w-full h-auto p-3 flex items-center justify-between rounded-lg shadow-sm border border-neutral-400 dark:border-neutral-700'
+      className='w-full h-auto p-3 flex items-center justify-between rounded-sm lg:rounded-md xl:rounded-lg shadow-sm border border-neutral-400 dark:border-neutral-700'
     >
       <div className='flex items-center gap-4'>
         <div className='w-16 h-16 relative'>
@@ -69,35 +69,35 @@ export default async function CartItem({ item }: ComponentProps) {
             priority
             placeholder='blur'
             blurDataURL={item.products.image}
-            className='object-cover rounded-lg drop-shadow-sm'
+            className='object-cover rounded-sm lg:rounded-md xl:rounded-lg drop-shadow-sm'
           />
         </div>
 
         <div className='flex flex-col gap-0.5'>
-          <h3 className='text-lg text-black dark:text-white font-medium tracking-wide'>
+          <h3 className='text-sm lg:text-base xl:text-lg text-black dark:text-white font-medium tracking-wider lg:tracking-wide'>
             {item.products.name}&nbsp;
             {item.products.product_tag.toLowerCase().includes('spicy')
               ? '🌶️'
               : null}
           </h3>
 
-          <p className='text-sm text-gray-500 dark:text-stone-400 font-normal tracking-wider'>
+          <p className='text-xs lg:text-sm text-gray-500 dark:text-stone-400 font-normal tracking-wider'>
             ${item.products.price} per item
           </p>
         </div>
       </div>
 
-      <div className='flex items-center gap-4.5'>
+      <div className='flex items-center gap-2 lg:gap-3 xl:gap-4.5'>
         <form
           action={handleDecrementQuantity}
           className='w-8 h-8 flex items-center justify-center'
         >
           <button
             type='submit'
-            className='group outline-none border border-neutral-400 dark:border-neutral-700 cursor-pointer flex items-center justify-center rounded-lg shadow-sm w-8 h-8 hover:bg-orange-500 dark:hover:bg-stone-500/75 focus-visible:bg-orange-500 dark:focus-visible:bg-stone-500/75 hover:border-white dark:hover:border-neutral-400 focus-visible:border-white dark:focus-visible:border-neutral-400 transition-all duration-500'
+            className='group outline-none border border-neutral-400 dark:border-neutral-700 cursor-pointer flex items-center justify-center rounded-sm lg:rounded-md xl:rounded-lg shadow-sm w-8 h-8 hover:bg-orange-500 dark:hover:bg-stone-500/75 focus-visible:bg-orange-500 dark:focus-visible:bg-stone-500/75 hover:border-white dark:hover:border-neutral-400 focus-visible:border-white dark:focus-visible:border-neutral-400 transition-all duration-500'
             title={`Decrease the quantity by 1 for ${item.products.name}.`}
           >
-            <span className='text-gray-500 dark:text-stone-400 text-base group-hover:text-white group-focus-visible:text-white transition-all duration-500'>
+            <span className='text-gray-500 dark:text-stone-400 text-sm lg:text-base group-hover:text-white group-focus-visible:text-white transition-all duration-500'>
               <FaMinus />
             </span>
           </button>
@@ -113,10 +113,10 @@ export default async function CartItem({ item }: ComponentProps) {
         >
           <button
             type='submit'
-            className='group outline-none border border-neutral-400 dark:border-neutral-700 cursor-pointer flex items-center justify-center rounded-lg shadow-sm w-8 h-8 hover:bg-orange-500 dark:hover:bg-stone-500/75 focus-visible:bg-orange-500 dark:focus-visible:bg-stone-500/75 hover:border-white dark:hover:border-neutral-400 focus-visible:border-white dark:focus-visible:border-neutral-400 transition-all duration-500'
+            className='group outline-none border border-neutral-400 dark:border-neutral-700 cursor-pointer flex items-center justify-center rounded-sm lg:rounded-md xl:rounded-lg shadow-sm w-8 h-8 hover:bg-orange-500 dark:hover:bg-stone-500/75 focus-visible:bg-orange-500 dark:focus-visible:bg-stone-500/75 hover:border-white dark:hover:border-neutral-400 focus-visible:border-white dark:focus-visible:border-neutral-400 transition-all duration-500'
             title={`Increase the quantity by 1 for ${item.products.name}.`}
           >
-            <span className='text-gray-500 dark:text-stone-400 text-base group-hover:text-white group-focus-visible:text-white transition-all duration-500'>
+            <span className='text-gray-500 dark:text-stone-400 text-sm lg:text-base group-hover:text-white group-focus-visible:text-white transition-all duration-500'>
               <FaPlus />
             </span>
           </button>
@@ -132,10 +132,10 @@ export default async function CartItem({ item }: ComponentProps) {
         >
           <button
             type='submit'
-            className='group outline-none border border-neutral-400 dark:border-neutral-700 cursor-pointer flex items-center justify-center rounded-lg shadow-sm w-8 h-8 hover:bg-red-500 dark:hover:bg-red-700/50 focus-visible:bg-red-500 dark:focus-visible:bg-red-700/50 hover:border-white dark:hover:border-neutral-400 focus-visible:border-white dark:focus-visible:border-neutral-400 transition-all duration-500'
+            className='group outline-none border border-neutral-400 dark:border-neutral-700 cursor-pointer flex items-center justify-center rounded-sm lg:rounded-md xl:rounded-lg shadow-sm w-8 h-8 hover:bg-red-500 dark:hover:bg-red-700/50 focus-visible:bg-red-500 dark:focus-visible:bg-red-700/50 hover:border-white dark:hover:border-neutral-400 focus-visible:border-white dark:focus-visible:border-neutral-400 transition-all duration-500'
             title={`Remove ${item.products.name} from cart.`}
           >
-            <span className='text-red-500 text-base group-hover:text-white group-focus-visible:text-white transition-all duration-500'>
+            <span className='text-red-500 text-sm lg:text-base group-hover:text-white group-focus-visible:text-white transition-all duration-500'>
               <BsTrash />
             </span>
           </button>

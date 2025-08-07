@@ -30,19 +30,19 @@ function SidebarLink({ linkData, isNavCollapsed }: LinkProps) {
 
   const linkClasses = useMemo(() => {
     const baseClasses = `${
-      isNavCollapsed ? 'w-11.25' : 'w-full'
-    } cursor-pointer h-full group outline-none border-l-2 flex items-center gap-3 text-base tracking-wide py-1.5 px-3 rounded-lg transition-all duration-500`;
+      isNavCollapsed ? 'w-11.25' : 'w-auto xl:w-full'
+    } cursor-pointer h-full group outline-none border-l-0 lg:border-l-2 flex items-center gap-3 text-xs lg:text-base tracking-wider lg:tracking-wide py-0 px-0 lg:py-1.5 lg:px-3 rounded-sm lg:rounded-md xl:rounded-lg transition-all duration-500`;
 
     const stateClasses = isActive
-      ? 'border-l-orange-500 bg-transparent text-orange-500 hover:bg-gray-100/15 focus-visible:bg-gray-100/15'
-      : 'border-l-white bg-transparent text-white hover:bg-gray-100/25 focus-visible:bg-gray-100/25 hover:shadow-lg focus-visible:shadow-lg';
+      ? 'lg:border-l-orange-500 bg-transparent text-orange-500 lg:hover:bg-gray-100/15 lg:focus-visible:bg-gray-100/15'
+      : 'lg:border-l-white bg-transparent text-white hover:text-orange-300 focus-visible:text-orange-300 lg:hover:text-white lg:focus-visible:text-white lg:hover:bg-gray-100/25 lg:focus-visible:bg-gray-100/25 hover:shadow-lg focus-visible:shadow-lg';
 
     return `${baseClasses} ${stateClasses}`;
   }, [isNavCollapsed, isActive]);
 
   const iconClasses = useMemo(
     () =>
-      `text-lg transition-all duration-500 ${
+      `hidden xl:inline-block text-lg transition-all duration-500 ${
         isActive ? 'text-orange-500' : 'text-white'
       }`,
     [isActive]

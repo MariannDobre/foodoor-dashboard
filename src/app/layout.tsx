@@ -31,7 +31,7 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body
-        className={`${lexend?.className} h-auto xl:h-screen w-screen xl:overflow-hidden antialiased`}
+        className={`${lexend?.className} h-auto w-full xl:h-screen xl:w-screen xl:overflow-hidden antialiased`}
       >
         <ThemeProvider>
           <Toaster
@@ -64,7 +64,7 @@ export default function RootLayout({
           <div className='flex flex-col h-auto xl:flex-row xl:h-[calc(100vh-80px)]'>
             <SidebarWrapper />
 
-            <main className='bg-gray-100 dark:bg-neutral-900 flex-1 h-auto xl:h-full p-3 xl:p-6 xl:overflow-y-auto transition-colors duration-500'>
+            <main className='bg-gray-100 dark:bg-neutral-900 flex-1 h-auto w-full xl:h-full xl:w-screen p-3 xl:p-6 xl:overflow-y-auto transition-colors duration-500'>
               {children}
             </main>
           </div>

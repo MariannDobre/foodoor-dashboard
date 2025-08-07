@@ -7,7 +7,7 @@ import GetHelp from '@/_components/_home/GetHelp';
 
 export default function Page() {
   return (
-    <section className='flex flex-col gap-9'>
+    <section className='flex flex-col gap-3 lg:gap-6 xl:gap-9'>
       <HomeHero />
 
       <HeroCards />

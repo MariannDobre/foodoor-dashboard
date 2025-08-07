@@ -23,19 +23,21 @@ function ThemeToggle({ isNavCollapsed }: ThemeToggleProps) {
   return (
     <button
       type='button'
-      className='group outline-none border-l-2 border-l-white cursor-pointer w-full h-9 py-1.5 px-3 rounded-lg hover:bg-gray-100/25 focus-visible:bg-gray-100/25 hover:shadow-lg focus-visible:shadow-lg transition-all duration-500'
+      className='group outline-none border-l-0 lg:border-l-2 lg:border-l-white cursor-pointer w-full h-9 py-0 px-0 lg:py-1.5 lg:px-3 rounded-lg lg:hover:bg-gray-100/25 lg:focus-visible:bg-gray-100/25 hover:shadow-lg focus-visible:shadow-lg transition-all duration-500'
       onClick={toggleTheme}
       aria-label={themeConfig.ariaLabel}
     >
       <div className='flex items-center gap-3 text-base tracking-wide text-white transition-all duration-500'>
         <span
-          className='text-lg text-white transition-all duration-500'
+          className='text-base lg:text-lg text-white hover:text-orange-300 focus-visible:text-orange-300 lg:hover:text-white lg:focus-visible:text-white transition-all duration-500'
           aria-hidden='true'
         >
           {themeConfig.icon}
         </span>
         {!isNavCollapsed && (
-          <span className='truncate'>{themeConfig.label}</span>
+          <span className='truncate hidden xl:inline-block'>
+            {themeConfig.label}
+          </span>
         )}
       </div>
     </button>

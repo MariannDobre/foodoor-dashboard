@@ -17,21 +17,21 @@ export default async function DeliveryData() {
   const userEmail = session?.user?.email ?? '';
 
   return (
-    <div className='border border-neutral-300 dark:border-neutral-600 flex flex-col items-center gap-6 p-6 rounded-lg shadow-sm w-full h-full'>
+    <div className='border border-neutral-300 dark:border-neutral-600 flex flex-col items-center  gap-3 lg:gap-6 p-3 lg:p-6 rounded-lg shadow-sm w-full h-full'>
       <div className='w-full h-auto flex flex-col gap-0.5'>
-        <h6 className='text-orange-500 text-xl font-medium tracking-wide'>
+        <h6 className='text-orange-500 text-base lg:text-lg xl:text-xl font-medium tracking-wide'>
           Delivery Informations
         </h6>
 
-        <p className='text-gray-500 dark:text-stone-400 text-sm font-normal tracking-wider'>
+        <p className='text-gray-500 dark:text-stone-400 text-xs lg:text-sm font-normal tracking-wider'>
           Manage your address, phone number, and contact details...
         </p>
       </div>
 
-      <div className='w-full h-full p-6 flex flex-col items-center justify-center gap-1.5 bg-gray-200/75 dark:bg-stone-500/75 border border-neutral-400 dark:border-neutral-700 rounded-lg shadow-sm'>
+      <div className='w-full h-full p-3 lg:p-6 flex flex-col items-center justify-center gap-1.5 bg-gray-200/75 dark:bg-stone-500/75 border border-neutral-400 dark:border-neutral-700 rounded-lg shadow-sm'>
         <form
           action={updateDeliveryData}
-          className='w-full h-full flex flex-col gap-6'
+          className='w-full h-full flex flex-col gap-3 lg:gap-6'
         >
           <div className='w-full h-auto flex items-center justify-between gap-6'>
             <label
@@ -185,7 +185,7 @@ export default async function DeliveryData() {
               </span>
             </h6>
 
-            <button className='outline-none border-none cursor-pointer py-1.5 px-6 w-full text-base text-white font-normal tracking-wide bg-orange-500 flex items-center justify-center text-center rounded-lg shadow-sm hover:bg-orange-400 focus-visible:bg-orange-400 transition-all duration-500'>
+            <button className='outline-none border-none cursor-pointer py-1 px-3 lg:py-1.5 lg:px-6 w-full text-sm lg:text-base text-white font-normal tracking-wider lg:tracking-wide bg-orange-500 flex items-center justify-center text-center rounded-sm lg:rounded-lg shadow-sm hover:bg-orange-400 focus-visible:bg-orange-400 transition-all duration-500'>
               Update your delivery data
             </button>
           </div>

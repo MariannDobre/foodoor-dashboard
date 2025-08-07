@@ -37,7 +37,7 @@ export default function ProductCard({
   const displayedProducts = cardData;
 
   return (
-    <div className='flex flex-col gap-6'>
+    <div className='flex flex-col gap-3 2xl:gap-6'>
       <FilterProducts
         filterValue={filterValue}
         restaurantId={restaurantId}
@@ -61,18 +61,18 @@ export default function ProductCard({
       >
         {displayedProducts.length === 0 ? (
           <div className='w-full h-auto flex flex-col items-center justify-center gap-1.5 my-6'>
-            <h6 className='text-xl text-black dark:text-white font-normal tracking-wide'>
+            <h6 className='text-base lg:text-lg 2xl:text-xl text-black dark:text-white font-normal tracking-wide'>
               Unfortunately this restaurant does not have any food of this
               type:&nbsp;
               <em className='font-medium text-orange-500'>{filterValue}</em>
             </h6>
 
-            <p className='text-base text-gray-500 dark:text-stone-400 font-normal tracking-wide'>
+            <p className='text-xs lg:text-sm 2xl:text-base text-gray-500 dark:text-stone-400 font-normal tracking-wider 2xl:tracking-wide'>
               We suggest clearing the filter and try again 💪!
             </p>
           </div>
         ) : (
-          <div className='w-full h-auto grid grid-cols-3 gap-6'>
+          <div className='w-full h-auto grid grid-cols-1 gap-x-0 gap-y-3 sm:grid-cols-2 sm:gap-x-3 sm:gap-y-3 2xl:grid-cols-3 2xl:gap-x-6 2xl:gap-y-6'>
             {displayedProducts.map((product) => {
               const heights =
                 product.restaurant_id.toString() === restaurantId
@@ -84,7 +84,7 @@ export default function ProductCard({
                   key={product.id}
                   className={`w-full ${heights.card} bg-transparent rounded-lg shadow-sm border border-neutral-400 dark:border-neutral-700 hover:shadow-lg focus-visible:shadow-lg transition-all duration-500`}
                 >
-                  <div className='w-full h-[300px] relative'>
+                  <div className='w-full h-[276px] xl:h-[284px] 2xl:h-[300px] relative'>
                     <Image
                       src={product.image}
                       alt={`Photo of product ${product.name}`}
@@ -99,19 +99,19 @@ export default function ProductCard({
                   <div
                     className={`w-full ${heights.content} p-3 flex flex-col gap-1.5`}
                   >
-                    <h6 className='text-lg font-medium tracking-wider text-black dark:text-white'>
+                    <h6 className='text-sm lg:text-base xl:text-lg font-medium tracking-wider text-black dark:text-white'>
                       {product.name}&nbsp;
                       {product.product_tag.toLowerCase().includes('spicy')
                         ? '🌶️'
                         : null}
                     </h6>
 
-                    <p className='text-base font-normal tracking-wide text-gray-500 dark:text-stone-400'>
+                    <p className='text-xs lg:text-sm xl:text-base font-normal tracking-wider xl:tracking-wide text-gray-500 dark:text-stone-400'>
                       {product.description}
                     </p>
 
                     <div className='w-full flex items-center justify-between mt-auto'>
-                      <span className='text-xl text-orange-500 font-medium tracking-wider'>
+                      <span className='text-base lg:text-lg xl:text-xl text-orange-500 font-medium tracking-wide lg:tracking-wider'>
                         ${product.price}
                       </span>
 

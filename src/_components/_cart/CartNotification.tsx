@@ -19,7 +19,7 @@ export default async function CartNotification({
   return (
     <div
       className={`
-      w-full border-l-4 p-4.5 rounded-lg shadow-sm
+      w-full border-2-4 p-3 lg:p-4.5 rounded-sm lg:rounded-md xl:rounded-lg shadow-sm
       ${
         isSuccess
           ? 'bg-green-50 dark:bg-green-900/20 border-green-500 text-green-800 dark:text-green-200'

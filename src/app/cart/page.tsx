@@ -11,13 +11,13 @@ interface PageProps {
 
 export default function Page({ searchParams }: PageProps) {
   return (
-    <section className='w-full h-full flex flex-col gap-9'>
-      <div className='w-full h-auto flex flex-col gap-1.5'>
-        <h6 className='text-black dark:text-white text-2xl font-medium tracking-wide'>
+    <section className='w-full h-[calc(100vh-64px-60px-24px)] xl:h-full flex flex-col gap-3 lg:gap-6 xl:gap-9'>
+      <div className='w-full h-auto flex flex-col gap-1 lg:gap-1.5'>
+        <h6 className='text-black dark:text-white text-lg lg:text-xl xl:text-2xl font-medium tracking-wide'>
           Shopping Cart
         </h6>
 
-        <p className='text-gray-500 dark:text-stone-400 text-base font-normal tracking-wide'>
+        <p className='text-gray-500 dark:text-stone-400 text-sm lg:text-base font-normal tracking-wide'>
           Review your items and place your order
         </p>
       </div>
@@ -34,7 +34,7 @@ export default function Page({ searchParams }: PageProps) {
               />
             </div>
 
-            <p className='text-lg text-gray-500 dark:text-stone-400 font-medium tracking-wide'>
+            <p className='text-base lg:text-lg text-gray-500 dark:text-stone-400 font-medium tracking-wide'>
               Loading the cart body...
             </p>
           </div>
@@ -53,7 +53,7 @@ export default function Page({ searchParams }: PageProps) {
               />
             </div>
 
-            <p className='text-lg text-gray-500 dark:text-stone-400 font-medium tracking-wide'>
+            <p className='text-base lg:text-lg text-gray-500 dark:text-stone-400 font-medium tracking-wide'>
               Loading the cart footer...
             </p>
           </div>

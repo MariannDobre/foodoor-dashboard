@@ -35,7 +35,7 @@ export default async function Profile() {
             />
           </div>
         ) : (
-          <span className='text-white text-2xl font-medium'>
+          <span className='text-white text-base lg:text-lg xl:text-xl 2xl:text-2xl font-medium'>
             {session?.user ? (
               session.user?.name?.trim().charAt(0).toUpperCase()
             ) : (

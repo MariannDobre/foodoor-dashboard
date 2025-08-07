@@ -79,13 +79,13 @@ export default async function Page({ params, searchParams }: PageProps) {
   const suspenseKey = `${restaurantId}-${filterValue}`;
 
   return (
-    <section className='w-full flex flex-col gap-6'>
+    <section className='w-full flex flex-col gap-3 2xl:gap-6'>
       <RestaurantBanner restaurantData={restaurantData} />
 
       <RestaurantDeliveryArea restaurantData={restaurantData} />
 
       <div className='flex flex-col gap-4.5'>
-        <h6 className='text-orange-500 text-xl font-medium tracking-wide'>
+        <h6 className='text-orange-500 text-base xl:text-lg 2xl:text-xl font-medium tracking-wide'>
           Menu
         </h6>
 
@@ -100,7 +100,7 @@ export default async function Page({ params, searchParams }: PageProps) {
                 />
               </div>
 
-              <p className='text-lg text-gray-500 dark:text-stone-400 font-medium tracking-wide'>
+              <p className='text-base lg:text-lg text-gray-500 dark:text-stone-400 font-medium tracking-wide'>
                 Loading the restaurant menu...
               </p>
             </div>

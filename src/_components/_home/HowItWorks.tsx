@@ -34,18 +34,18 @@ const cardData: CardItem[] = [
 
 export default function HowItWorks() {
   return (
-    <div className='flex flex-col items-center justify-center w-full h-auto gap-9 my-6'>
+    <div className='flex flex-col items-center justify-center w-full h-auto gap-6 xl:gap-9 my-3 lg:my-4.5 xl:my-6'>
       <div className='w-full h-auto flex flex-col items-center justify-center gap-1.5'>
-        <h6 className='text-black dark:text-white text-lg xl:text-xl 2xl:text-2xl font-medium tracking-wide text-center'>
+        <h6 className='text-black dark:text-white text-lg lg:text-xl xl:text-2xl font-medium tracking-wide text-center'>
           How It Works?
         </h6>
 
-        <p className='text-slate-500 dark:text-stone-400 text-sm xl:text-base font-normal tracking-wide w-full max-w-[620px] text-center'>
+        <p className='text-slate-500 dark:text-stone-400 text-sm lg:text-base xl:text-lg font-normal tracking-wide w-full max-w-[620px] text-center'>
           Simple steps to get your food delivered.
         </p>
       </div>
 
-      <div className='flex flex-col xl:flex-row items-center justify-center gap-12'>
+      <div className='flex flex-col xl:flex-row items-center justify-center gap-6 xl:gap-12'>
         {cardData.map((card, index) => (
           <Card
             key={card.id}
@@ -61,16 +61,16 @@ export default function HowItWorks() {
 
 function Card({ data, index, length }: CardItemProps) {
   return (
-    <div className='relative flex flex-col items-center w-96'>
-      <span className='mb-4.5 w-8 h-8 xl:w-12 xl:h-12 2xl:w-16 2xl:h-16 bg-orange-500 rounded-full shadow-sm flex items-center justify-center text-white text-xl'>
+    <div className='relative flex flex-col items-center w-auto xl:w-96'>
+      <span className='mb-3 xl:mb-4.5 w-8 h-8 lg:w-12 lg:h-12 xl:w-16 xl:h-16 bg-orange-500 rounded-full shadow-sm flex items-center justify-center text-white font-medium text-base lg:text-lg xl:text-xl'>
         {data.step}
       </span>
 
-      <h6 className='mb-1.5 text-black dark:text-white text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl font-normal tracking-wide text-center'>
+      <h6 className='mb-1.5 text-black dark:text-white text-sm lg:text-base xl:text-2xl font-normal tracking-wide text-center'>
         {data.title}
       </h6>
 
-      <p className='text-slate-500 dark:text-stone-400 text-xs xl:text-base font-normal tracking-wider xl:tracking-wide text-center'>
+      <p className='text-slate-500 dark:text-stone-400 text-xs lg:text-sm xl:text-base font-normal tracking-wider xl:tracking-wide text-center'>
         {data.body}
       </p>
 
